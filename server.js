@@ -20,14 +20,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // All API responses should have JSON content type
+// Also allow requests from any domain name to interface the API
 app.use((req, res, next) => {
   res.setHeader("Content-Type", "application/json");
+  res.setHeader("Access-Control-Allow-Origin", "*");
   next();
 });
 
 // Assign ID to each request
 app.use((req, res, next) => {
   req.id = uuid.v4();
+  console.log(req.originalUrl.split("?")[0]);
   next();
 });
 
