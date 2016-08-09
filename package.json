@@ -1,0 +1,35 @@
+{
+  "name": "wpc-api",
+  "version": "0.0.1",
+  "description": "API endpoint for Sam & Adam's pool scores.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node ./tests/_init.js && jasmine-node ./tests"
+  },
+  "author": "Adam McArthur",
+  "license": "MIT",
+  "dependencies": {
+    "basic-auth": "^1.0.4",
+    "bcrypt": "^0.8.7",
+    "body-parser": "^1.15.1",
+    "confirm-simple": "^1.0.3",
+    "express": "^4.13.4",
+    "express-winston": "^1.4.2",
+    "glob": "^7.0.3",
+    "hat": "0.0.3",
+    "jsonwebtoken": "^7.0.1",
+    "morgan": "^1.7.0",
+    "node-uuid": "^1.4.7",
+    "qs": "^6.2.0",
+    "request": "^2.73.0",
+    "thinky": "^2.3.2",
+    "winston": "^2.2.0"
+  },
+  "devDependencies": {
+    "frisby": "^0.8.5",
+    "jasmine": "^2.4.1",
+    "jasmine-node": "^1.14.5",
+    "request": "^2.72.0"
+  }
+}
