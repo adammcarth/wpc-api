@@ -15,7 +15,7 @@ This model manages the latest pool scores for Sam & Adam.
 
 This model stores Admin user accounts, which are used for access management to
 the API. Note that passwords which are sent in plain text will be encrypted
-automatically with (bcrypt)[https://www.npmjs.com/package/bcrypt].
+automatically with [bcrypt](https://www.npmjs.com/package/bcrypt).
 
 - `email`: *[String] [Required]* Email address used to login
 - `password`: *[String] [Required]* Automatically encrypted on save/update
@@ -40,7 +40,7 @@ DELETE /users/:id
 ```
 
 API requests can be authenticated by using a
-(JSON web token)[https://www.npmjs.com/package/jsonwebtoken]. Generated tokens will
+[JSON web token](https://www.npmjs.com/package/jsonwebtoken). Generated tokens will
 be valid for 24 hours. Tokens are sent in the `X-Access-Token` http header.
 
 ```
