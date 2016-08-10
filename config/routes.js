@@ -5,7 +5,8 @@ module.exports = {
   // You can use wildcards, eg - "*": "/posts*"
   "permissions": {
     "public": {
-      "POST": "/authenticate"
+      "POST": "/authenticate",
+      "GET": "/"
     },
 
     "api": {
