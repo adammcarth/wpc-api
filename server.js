@@ -20,12 +20,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // All API responses should have JSON content type
-// Also allow cross origin requests from other domains
+// Also set CORS headers
 app.use((req, res, next) => {
   res.setHeader("Content-Type", "application/json");
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PATCH, PUT, DELETE");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-API-Key");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, Accept, X-API-Key");
+  next();
 });
 
 // Assign ID to each request

@@ -3,6 +3,7 @@ let app = require("express")(),
     path = require("path"),
     fs = require("fs"),
     glob = require("glob"),
+    cors = require("cors"),
     jwt = require("jsonwebtoken"),
     basicAuth = require("basic-auth"),
     routeConfig = require(path.join(__dirname, "config/routes.js")),
@@ -11,18 +12,17 @@ let app = require("express")(),
     expressWinston = require("express-winston"),
     utils = {};
 
+// Allow cross origin requests from other domains
+corsOptions = {
+  origin: "*",
+  methods: "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+  allowedHeaders: "Content-Type, Authorization, Accept, X-API-Key",
+}
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
+
 // Set config globally
 app.set("routeConfig", routeConfig);
-
-// Respond to preflight OPTIONS requests with 200 OK
-// This is used for CORS checking in js frameworks
-app.use((req, res, next) => {
-  if ( req.method === "OPTIONS" ) {
-    res.status(200);
-  } else {
-    next();
-  }
-});
 
 // Import the models for RethinkDB
 models = {};
