@@ -9,12 +9,12 @@ let path = require("path"),
 
 let Score = thinky.createModel("Score", {
   id: type.string(), // PK
-  sam: {
+  sam: type.object().required().schema({
     wins: type.number().required().min(0).max(100)
-  },
-  adam: {
+  }),
+  adam: type.object().required().schema({
     wins: type.number().required().min(0).max(100)
-  },
+  }),
   text: type.string().max(130),
   link: type.string().max(130),
   createdAt: type.date().default(r.now()),

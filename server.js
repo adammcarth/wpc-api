@@ -26,8 +26,8 @@ app.use(methodOverride((req, res) => {
     let method = req.body._method
     delete req.body._method
     return method;
-  } else if ( req.headers("X-Method-Override") || req.headers("X-HTTP-Method-Override") || req.headers("X-HTTP-Method") ) {
-    return req.headers("X-Method-Override") || req.headers("X-HTTP-Method-Override") || req.headers("X-HTTP-Method");
+  } else if ( req.get("X-Method-Override") || req.get("X-HTTP-Method-Override") || req.get("X-HTTP-Method") ) {
+    return req.get("X-Method-Override") || req.get("X-HTTP-Method-Override") || req.get("X-HTTP-Method");
   }
 }));
 
