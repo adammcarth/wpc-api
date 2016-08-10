@@ -19,13 +19,18 @@ if ( app.get("env") === "development" ) {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Allow cross origin requests from other domains
+corsOptions = {
+  origin: "*",
+  methods: "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+  allowedHeaders: "Content-Type, Authorization, Accept, X-API-Key",
+}
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
+
 // All API responses should have JSON content type
-// Also set CORS headers
 app.use((req, res, next) => {
   res.setHeader("Content-Type", "application/json");
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, Accept, X-API-Key");
   next();
 });
 
