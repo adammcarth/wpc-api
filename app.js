@@ -15,6 +15,15 @@ let app = require("express")(),
 // Set config globally
 app.set("routeConfig", routeConfig);
 
+// Allow cross origin requests from other domains
+corsOptions = {
+  origin: "*",
+  methods: "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+  allowedHeaders: "Content-Type, Authorization, Accept, X-API-Key",
+}
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
+
 // Import the models for RethinkDB
 models = {};
 glob(path.join(__dirname, "models/**/*.js"), (err, files) => {

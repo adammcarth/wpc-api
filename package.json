@@ -20,6 +20,7 @@
     "glob": "^7.0.3",
     "hat": "0.0.3",
     "jsonwebtoken": "^7.0.1",
+    "method-override": "^2.3.6",
     "morgan": "^1.7.0",
     "node-uuid": "^1.4.7",
     "qs": "^6.2.0",

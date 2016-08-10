@@ -4,6 +4,7 @@ let path = require("path"),
     app = require(path.join(__dirname, "app.js")),
     thinky = require(path.join(__dirname, "config/rethink.js")),
     bodyParser = require("body-parser"),
+    methodOverride = require("method-override"),
     logger = require("morgan"),
     morgan = require("morgan"),
     winston = require("winston"),
@@ -19,14 +20,16 @@ if ( app.get("env") === "development" ) {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Allow cross origin requests from other domains
-corsOptions = {
-  origin: "*",
-  methods: "GET, POST, PUT, PATCH, DELETE, OPTIONS",
-  allowedHeaders: "Content-Type, Authorization, Accept, X-API-Key",
-}
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
+// Allow method override
+app.use(methodOverride((req, res) => {
+  if (req.body && typeof req.body === "object" && "_method" in req.body) {
+    let method = req.body._method
+    delete req.body._method
+    return method;
+  } else if ( req.headers("X-Method-Override") || req.headers("X-HTTP-Method-Override") || req.headers("X-HTTP-Method") ) {
+    return req.headers("X-Method-Override") || req.headers("X-HTTP-Method-Override") || req.headers("X-HTTP-Method");
+  }
+}));
 
 // All API responses should have JSON content type
 app.use((req, res, next) => {
