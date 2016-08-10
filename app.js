@@ -14,6 +14,16 @@ let app = require("express")(),
 // Set config globally
 app.set("routeConfig", routeConfig);
 
+// Respond to preflight OPTIONS requests with 200 OK
+// This is used for CORS checking in js frameworks
+app.use((req, res, next) => {
+  if ( req.method === "OPTIONS" ) {
+    res.status(200);
+  } else {
+    next();
+  }
+});
+
 // Import the models for RethinkDB
 models = {};
 glob(path.join(__dirname, "models/**/*.js"), (err, files) => {

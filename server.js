@@ -24,9 +24,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use((req, res, next) => {
   res.setHeader("Content-Type", "application/json");
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PATCH, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PATCH, PUT, DELETE");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-API-Key");
-  next();
 });
 
 // Assign ID to each request
